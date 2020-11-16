@@ -52,7 +52,11 @@ class EmployeePayroll {
         return this._startDate;
     }
     set startDate(startDate) {
-        this._startDate = startDate;
+        if (startDate < new Date()) {
+            this._startDate = startDate;
+        } else {
+            throw 'Date is Invalid !';
+        }
     }
 
     //Methods
