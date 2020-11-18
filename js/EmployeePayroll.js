@@ -52,11 +52,14 @@ class EmployeePayroll {
         return this._startDate;
     }
     set startDate(startDate) {
-        if (startDate < new Date()) {
-            this._startDate = startDate;
-        } else {
-            throw 'Date is Invalid !';
+        if (startDate > new Date()) {
+            throw 'Date is A Future Date !';
         }
+        var diff = Math.abs(new Date().getTime() - startDate.getTime());
+        if (diff / (1000 * 60 * 60 * 24) > 30) {
+            throw 'Date is Not Within 30 Days !';
+        }
+        this._startDate = startDate;
     }
 
     //Methods
